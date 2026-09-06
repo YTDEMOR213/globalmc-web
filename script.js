@@ -117,11 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. Buy Button Handler
+    // 6. Buy Button Handler — перекидает на Donationalerts
     const buyButtons = document.querySelectorAll('.buy-btn');
     buyButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            showToast('Redirecting to payment gateway...');
+            window.open('https://www.donationalerts.com/r/nikitabebrechka', '_blank');
         });
     });
 });
