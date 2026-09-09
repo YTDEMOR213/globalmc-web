@@ -3,884 +3,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>GlobalMC — Geopolitical Minecraft Server</title>
-
     <link rel="stylesheet" href="styles.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<div class="glow-bg glow-blue"></div>
-<div class="glow-bg glow-green"></div>
+    <div class="glow-bg glow-blue"></div>
+    <div class="glow-bg glow-green"></div>
 
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo nav-trigger" data-target="home">Global<span>MC</span></a>
+            
+            <nav class="nav-links">
+                <button class="nav-btn active" data-target="home">Home</button>
+                <button class="nav-btn" data-target="rules">Rules</button>
+                <button class="nav-btn" data-target="world">World Map</button>
+                <button class="nav-btn" data-target="join">How to Join</button>
+                <button class="nav-btn" data-target="store">Store</button>
+                <a class="nav-btn discord-nav-btn" href="https://discord.gg/eGsWQxwkas" target="_blank">Discord</a>
+            </nav>
 
-<header class="navbar">
-
-    <div class="nav-container">
-
-        <a href="#home" class="logo nav-trigger" data-target="home">
-            Global<span>MC</span>
-        </a>
-
-
-        <nav class="nav-links">
-
-            <button class="nav-btn active" data-target="home">
-                Home
-            </button>
-
-            <button class="nav-btn" data-target="rules">
-                Rules
-            </button>
-
-            <button class="nav-btn" data-target="world">
-                World Map
-            </button>
-
-            <button class="nav-btn" data-target="join">
-                How to Join
-            </button>
-
-            <button class="nav-btn" data-target="store">
-                Store
-            </button>
-
-        </nav>
-
-
-        <div class="nav-actions">
-
-            <a 
-                href="https://discord.gg/eGsWQxwkas"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="discord-btn"
-            >
-                Discord
-            </a>
-
-
-            <button 
-                class="ip-pill-btn" 
-                id="nav-copy-ip"
-                data-ip="globalmc.hypixels.pl"
-            >
-
-                <span class="online-indicator"></span>
-
-                <span class="ip-text">
-                    globalmc.hypixels.pl
-                </span>
-
-                <span class="copy-badge">
-                    Copy
-                </span>
-
-            </button>
-
+            <div class="nav-actions">
+                <button class="ip-pill-btn" id="nav-copy-ip" data-ip="globalmc.hypixels.pl">
+                    <span class="online-indicator"></span>
+                    <span class="ip-text">globalmc.hypixels.pl</span>
+                    <span class="copy-badge">Copy</span>
+                </button>
+            </div>
         </div>
+    </header>
 
-    </div>
+    <main class="content-wrapper">
 
-</header>
-
-
-
-<main class="content-wrapper">
-
-<section id="home" class="page-section active">
-
-    <div class="hero-section">
-
-        <div class="badge-wrapper">
-            <span class="badge">
-                POLITICAL SANDBOX SERVER
-            </span>
-        </div>
-
-
-        <h1 class="hero-title">
-            Build Empires & Shape History on 
-            <span class="gradient-text">
-                GlobalMC
-            </span>
-        </h1>
-
-
-        <p class="hero-subtitle">
-            A unique geopolitical Minecraft world where players form political parties,
-            write constitutions, wage diplomatic wars, and control global trade.
-        </p>
-
-
-        <div class="hero-actions">
-
-            <button 
-                class="primary-btn copy-ip-trigger"
-                data-ip="globalmc.hypixels.pl"
-            >
-
-                <span>
-                    Copy Server IP
-                </span>
-
-                <code class="ip-display">
-                    globalmc.hypixels.pl
-                </code>
-
-            </button>
-
-
-            <button 
-                class="secondary-btn nav-trigger"
-                data-target="world"
-            >
-
-                <span>
-                    Explore Live Map
-                </span>
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- Server Status -->
-
-    <div class="server-status-card">
-
-        <div class="status-header">
-
-            <h3>
-                Server Status
-            </h3>
-
-            <span 
-                id="server-status-indicator"
-                class="status-loading"
-            >
-                Checking...
-            </span>
-
-        </div>
-
-
-        <div class="server-stats">
-
-
-            <div class="server-stat">
-
-                <span class="server-stat-label">
-                    Players
-                </span>
-
-                <span 
-                    class="server-stat-value"
-                    id="server-players"
-                >
-                    -
-                </span>
-
+        <section id="home" class="page-section active">
+            
+            <div class="hero-section">
+                <div class="badge-wrapper">
+                    <span class="badge">POLITICAL SANDBOX SERVER</span>
+                </div>
+                <h1 class="hero-title">Build Empires & Shape History on <span class="gradient-text">GlobalMC</span></h1>
+                <p class="hero-subtitle">
+                    A unique geopolitical Minecraft world where players form political parties, write constitutions, wage diplomatic wars, and control global trade.
+                </p>
+                <div class="hero-actions">
+                    <button class="primary-btn copy-ip-trigger" data-ip="globalmc.hypixels.pl">
+                        <span>Copy Server IP</span>
+                        <code class="ip-display">globalmc.hypixels.pl</code>
+                    </button>
+                    <button class="secondary-btn nav-trigger" data-target="world">
+                        <span>Explore Live Map</span>
+                    </button>
+                </div>
             </div>
 
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-label">SERVER STATUS</span>
+                    <span class="stat-value" id="server-status">🟢 Online</span>
+                </div>
 
+                <div class="stat-item">
+                    <span class="stat-label">PLAYERS</span>
+                    <span class="stat-value" id="player-count">0 / 100</span>
+                </div>
 
-            <div class="server-stat">
-
-                <span class="server-stat-label">
-                    Version
-                </span>
-
-                <span 
-                    class="server-stat-value"
-                    id="server-version"
-                >
-                    1.21.11
-                </span>
-
+                <div class="stat-item">
+                    <span class="stat-label">MC VERSION</span>
+                    <span class="stat-value">1.21.11</span>
+                </div>
             </div>
 
-
-
-            <div class="server-stat">
-
-                <span class="server-stat-label">
-                    Address
-                </span>
-
-                <span class="server-stat-value">
-                    globalmc.hypixels.pl
-                </span>
-
+            <div class="discord-card">
+                <h3>Join our Discord community</h3>
+                <p>News, announcements and communication with GlobalMC players.</p>
+                <a href="https://discord.gg/eGsWQxwkas" target="_blank" class="secondary-btn">
+                    💬 Join Discord
+                </a>
             </div>
 
+        </section>
 
-        </div>
-
-    </div>
-
-
-
-
-    <div class="stats-bar">
-
-        <div class="stat-item">
-
-            <span class="stat-label">
-                MC VERSION
-            </span>
-
-            <span class="stat-value">
-                1.21.11
-            </span>
-
-        </div>
-
-    </div>
-
-
-</section>
-
-<section id="rules" class="page-section">
-
-    <div class="section-header">
-
-        <h2>
-            Server Rules & Guidelines
-        </h2>
-
-        <p>
-            Read the official rules below to ensure a fair and enjoyable experience for everyone.
-        </p>
-
-    </div>
-
-
-
-    <div class="rules-toolbar">
-
-        <div class="rules-search-box">
-
-            <input 
-                type="text"
-                id="rules-search"
-                placeholder="Search rules (e.g., cheats, war, chat)..."
-            >
-
-        </div>
-
-
-
-        <div class="rules-categories">
-
-            <button 
-                class="rule-cat-btn active"
-                data-category="all"
-            >
-                All Rules
-            </button>
-
-
-            <button 
-                class="rule-cat-btn"
-                data-category="integrity"
-            >
-                Fair Play & Hacks
-            </button>
-
-
-            <button 
-                class="rule-cat-btn"
-                data-category="conduct"
-            >
-                Community & Chat
-            </button>
-
-
-            <button 
-                class="rule-cat-btn"
-                data-category="politics"
-            >
-                Politics & Warfare
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <div class="rules-grid" id="rules-grid-container">
-
-
-        <div class="rule-card" data-category="integrity">
-
-            <div class="rule-number">
-                RULE #01
+        <section id="rules" class="page-section">
+            <div class="section-header">
+                <h2>Server Rules & Guidelines</h2>
+                <p>Read the official rules below to ensure a fair and enjoyable experience for everyone.</p>
             </div>
 
-            <p class="rule-text">
-                Cheats and any unfair advantages are strictly prohibited.
-            </p>
-
-        </div>
-
-
-        <div class="rule-card" data-category="integrity">
-
-            <div class="rule-number">
-                RULE #02
+            <div class="rules-toolbar">
+                <div class="rules-search-box">
+                    <input type="text" id="rules-search" placeholder="Search rules (e.g., 'cheats', 'war', 'chat')...">
+                </div>
+                <div class="rules-categories">
+                    <button class="rule-cat-btn active" data-category="all">All Rules</button>
+                    <button class="rule-cat-btn" data-category="integrity">Fair Play & Hacks</button>
+                    <button class="rule-cat-btn" data-category="conduct">Community & Chat</button>
+                    <button class="rule-cat-btn" data-category="politics">Politics & Warfare</button>
+                </div>
             </div>
 
-            <p class="rule-text">
-                The use of bugs and dupes to obtain resources or an advantage is prohibited.
-            </p>
+            <div class="rules-grid" id="rules-grid-container">
+                <div class="rule-card" data-category="integrity">
+                    <div class="rule-number">RULE #01</div>
+                    <p class="rule-text">Cheats and any unfair advantages are strictly prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="integrity">
+                    <div class="rule-number">RULE #02</div>
+                    <p class="rule-text">The use of bugs and dupes to obtain resources or an advantage is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="conduct">
+                    <div class="rule-number">RULE #03</div>
+                    <p class="rule-text">Insulting players or making personal attacks is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="conduct">
+                    <div class="rule-number">RULE #04</div>
+                    <p class="rule-text">Real-life threats and the publication of personal information are prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="conduct">
+                    <div class="rule-number">RULE #05</div>
+                    <p class="rule-text">Spam and chat flooding are prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="conduct">
+                    <div class="rule-number">RULE #06</div>
+                    <p class="rule-text">Advertising other servers without permission from the administration is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="conduct">
+                    <div class="rule-number">RULE #07</div>
+                    <p class="rule-text">Impersonating administration members or other players is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="integrity">
+                    <div class="rule-number">RULE #08</div>
+                    <p class="rule-text">Scamming involving in-game resources or currency is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="integrity">
+                    <div class="rule-number">RULE #09</div>
+                    <p class="rule-text">Intentionally exploiting server lag to gain an advantage is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="integrity">
+                    <div class="rule-number">RULE #10</div>
+                    <p class="rule-text">Bypassing bans or punishments using other accounts is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="conduct">
+                    <div class="rule-number">RULE #11</div>
+                    <p class="rule-text">Interfering with the administration's work or intentionally causing problems for the server is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="integrity">
+                    <div class="rule-number">RULE #12</div>
+                    <p class="rule-text">The use of third-party software that provides an unfair advantage is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="politics">
+                    <div class="rule-number">RULE #13</div>
+                    <p class="rule-text">Intentionally destroying other players' buildings is prohibited unless it is allowed by the mechanics of war.</p>
+                </div>
+                <div class="rule-card" data-category="politics">
+                    <div class="rule-number">RULE #14</div>
+                    <p class="rule-text">Political conflicts must take place within the boundaries of the game's roleplay.</p>
+                </div>
+                <div class="rule-card" data-category="conduct">
+                    <div class="rule-number">RULE #15</div>
+                    <p class="rule-text">Using real-world political events to harass players is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="politics">
+                    <div class="rule-number">RULE #16</div>
+                    <p class="rule-text">Wars, coups, and other political actions must comply with the server rules.</p>
+                </div>
+                <div class="rule-card" data-category="integrity">
+                    <div class="rule-number">RULE #17</div>
+                    <p class="rule-text">Exploiting economic bugs to artificially increase wealth is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="integrity">
+                    <div class="rule-number">RULE #18</div>
+                    <p class="rule-text">Bypassing restrictions through alternate accounts is prohibited.</p>
+                </div>
+                <div class="rule-card" data-category="conduct">
+                    <div class="rule-number">RULE #19</div>
+                    <p class="rule-text">Administration decisions must be followed until an appeal has been submitted and reviewed.</p>
+                </div>
+                <div class="rule-card" data-category="conduct">
+                    <div class="rule-number">RULE #20</div>
+                    <p class="rule-text">Ignorance of the rules does not exempt players from responsibility.</p>
+                </div>
+            </div>
+        </section>
 
-        </div>
-
-
-        <div class="rule-card" data-category="conduct">
-
-            <div class="rule-number">
-                RULE #03
+        <section id="world" class="page-section">
+            <div class="section-header">
+                <h2>Live World DynMap</h2>
+                <p>Explore nation territories, real-time player locations, and town structures directly on the live map.</p>
             </div>
 
-            <p class="rule-text">
-                Insulting players or making personal attacks is prohibited.
-            </p>
-
-        </div>
-
-
-        <div class="rule-card" data-category="conduct">
-
-            <div class="rule-number">
-                RULE #04
+            <div class="map-controls">
+                <div class="map-status">
+                    <span class="status-dot"></span>
+                    <span>DynMap Online & Connected</span>
+                </div>
+                <div class="map-actions">
+                    <button class="map-btn" id="reload-map-btn">🔄 Reload Map</button>
+                    <a href="http://globalmc.dynmap.me/" target="_blank" class="map-btn external-btn">↗️ Open in New Tab</a>
+                </div>
             </div>
 
-            <p class="rule-text">
-                Real-life threats and publication of personal information are prohibited.
-            </p>
+            <div class="map-wrapper">
+                <iframe src="https://globalmc.dynmap.me/" id="dynmap-iframe" class="map-iframe" title="GlobalMC Live Dynmap"></iframe>
+            </div>
+        </section>
 
-        </div>
-
-
-        <div class="rule-card" data-category="politics">
-
-            <div class="rule-number">
-                RULE #05
+        <section id="join" class="page-section">
+            <div class="section-header">
+                <h2>How to Connect to GlobalMC</h2>
+                <p>Follow three easy steps below to launch your political career.</p>
             </div>
 
-            <p class="rule-text">
-                Political conflicts must stay within server roleplay boundaries.
-            </p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-num">01</span>
+                        <span class="step-badge">Minecraft Java</span>
+                    </div>
+                    <h3>Launch Minecraft</h3>
+                    <p>Open your launcher and make sure you are running Minecraft Java Edition version <strong>1.21.11</strong> (Vanilla, Fabric, or Forge).</p>
+                </div>
 
-        </div>
+                <div class="step-card">
+                    <div class="step-header">
+                        <span class="step-num">02</span>
+                        <span class="step-badge">Server Address</span>
+                    </div>
+                    <h3>Add Server IP</h3>
+                    <p>Go to <strong>Multiplayer</strong> &rarr; <strong>Add Server</strong>, then paste the official server IP address:</p>
+                    <div class="ip-box copy-ip-trigger" data-ip="globalmc.hypixels.pl">
+                        <code>globalmc.hypixels.pl</code>
+                        <span class="copy-icon">📋</span>
+                    </div>
+                </div>
 
-
-        <div class="rule-card" data-category="politics">
-
-            <div class="rule-number">
-                RULE #06
+                <div class="step-card highlight">
+                    <div class="step-header">
+                        <span class="step-num">03</span>
+                        <span class="step-badge green">Ready to Play</span>
+                    </div>
+                    <h3>Enjoy the game!</h3>
+                    <p>Join the server, build your own nation, pass parliamentary laws, forge alliances, and make history on GlobalMC!</p>
+                </div>
             </div>
 
-            <p class="rule-text">
-                Wars and political actions must follow server rules.
-            </p>
+            <div class="launcher-showcase">
+                <div class="launcher-badge">
+                    <span class="pulse-dot"></span> OPEN BETA v0.1.0
+                </div>
+                
+                <h3 class="launcher-title">Play seamlessly with <span class="gradient-text">GlobalMC Launcher</span></h3>
+                
+                <p class="launcher-desc">
+                    Our custom lightweight launcher allows you to start the game and connect directly to the GlobalMC server without manual setup or typing IP addresses.
+                </p>
 
-        </div>
+                <div class="launcher-features">
+                    <div class="feature-pill">
+                        <span class="pill-icon">⚡</span>
+                        <div class="pill-text">
+                            <strong>One-Click Connect</strong>
+                            <span>Instant join to the main server</span>
+                        </div>
+                    </div>
+                    <div class="feature-pill">
+                        <span class="pill-icon">☕</span>
+                        <div class="pill-text">
+                            <strong>Fabric 1.21.11</strong>
+                            <span>Pre-configured game client</span>
+                        </div>
+                    </div>
+                    <div class="feature-pill">
+                        <span class="pill-icon">🌐</span>
+                        <div class="pill-text">
+                            <strong>Pre-set Server IP</strong>
+                            <span>Server added automatically</span>
+                        </div>
+                    </div>
+                    <div class="feature-pill">
+                        <span class="pill-icon">💻</span>
+                        <div class="pill-text">
+                            <strong>Windows 10 / 11</strong>
+                            <span>Standalone 64-bit application</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="launcher-download-area">
+                    <a href="https://drive.google.com/file/d/12UIdGEj9SAUPy_6pbuh9V_ti3Jq7x936/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="download-btn-premium">
+                        <span class="download-icon">📥</span>
+                        <div class="download-btn-text">
+                            <span class="btn-main-label">Download GlobalMC Launcher</span>
+                            <span class="btn-sub-label">Version 0.4 (Beta) • Google Drive</span>
+                        </div>
+                    </a>
+                    <div class="os-support-info">
+                        <span>💻 Platform: <strong>Windows 10 / 11</strong> (64-bit)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    </div>
-
-
-</section>
-
-
-
-
-
-<section id="world" class="page-section">
-
-
-    <div class="section-header">
-
-        <h2>
-            Live World DynMap
-        </h2>
-
-
-        <p>
-            Explore nation territories, player locations and world structures.
-        </p>
-
-    </div>
-
-
-
-    <div class="map-controls">
-
-
-        <div class="map-status">
-
-            <span class="status-dot"></span>
-
-            <span>
-                DynMap Online & Connected
-            </span>
-
-        </div>
-
-
-
-        <div class="map-actions">
-
-
-            <button 
-                class="map-btn"
-                id="reload-map-btn"
-            >
-                🔄 Reload Map
-            </button>
-
-
-
-            <a 
-                href="https://globalmc.dynmap.me/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="map-btn external-btn"
-            >
-                ↗️ Open in New Tab
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="map-wrapper">
-
-        <iframe
-
-            src="https://globalmc.dynmap.me/"
-
-            id="dynmap-iframe"
-
-            class="map-iframe"
-
-            title="GlobalMC Live Dynmap"
-
-        ></iframe>
-
-
-    </div>
-
-
-</section>
-<section id="join" class="page-section">
-
-
-    <div class="section-header">
-
-        <h2>
-            How to Connect to GlobalMC
-        </h2>
-
-        <p>
-            Follow three easy steps below to start your journey.
-        </p>
-
-    </div>
-
-
-
-    <div class="steps-grid">
-
-
-        <div class="step-card">
-
-            <div class="step-header">
-
-                <span class="step-num">
-                    01
-                </span>
-
-                <span class="step-badge">
-                    Minecraft Java
-                </span>
-
+        <section id="store" class="page-section">
+            <div class="section-header">
+                <h2>Server Store & Perks</h2>
+                <p>Support the server and get exclusive ranks, mining boosters, and in-game currency.</p>
             </div>
 
-
-            <h3>
-                Launch Minecraft
-            </h3>
-
-
-            <p>
-                Open Minecraft Java Edition version
-                <strong>1.21.11</strong>.
-            </p>
-
-        </div>
-
-
-
-
-        <div class="step-card">
-
-
-            <div class="step-header">
-
-                <span class="step-num">
-                    02
-                </span>
-
-                <span class="step-badge">
-                    Server Address
-                </span>
-
+            <div class="store-filter-bar">
+                <button class="store-cat-btn active" data-store-cat="all">All Items</button>
+                <button class="store-cat-btn" data-store-cat="ranks">Ranks & VIP</button>
+                <button class="store-cat-btn" data-store-cat="boosters">Mining Boosters</button>
+                <button class="store-cat-btn" data-store-cat="currency">Coins & Chips</button>
             </div>
 
+            <div class="store-grid">
 
+                <div class="store-card rank-card featured" data-store-cat="ranks">
+                    <div class="store-badge">TOP RANK</div>
+                    <div class="store-card-header">
+                        <span class="item-icon">👑</span>
+                        <h3>Emperor Rank</h3>
+                        <div class="item-price">$10.99</div>
+                    </div>
+                    <ul class="item-perks">
+                        <li><span>📦</span> Includes exclusive <strong>"Emperor Crate"</strong> with high-tier loot</li>
+                        <li><span>🛡️</span> Unique Emperor Custom Armor set</li>
+                        <li><span>⚡</span> Massive national mining & resource bonuses</li>
+                        <li><span>🌍</span> Global empire perks for your nation</li>
+                    </ul>
+                    <button class="buy-btn">Purchase Rank</button>
+                </div>
 
-            <h3>
-                Add Server IP
-            </h3>
+                <div class="store-card rank-card" data-store-cat="ranks">
+                    <div class="store-card-header">
+                        <span class="item-icon">⚜️</span>
+                        <h3>King Rank</h3>
+                        <div class="item-price">$5.99</div>
+                    </div>
+                    <ul class="item-perks">
+                        <li><span>📦</span> <strong>1 Daily "King Crate"</strong> with premium loot</li>
+                        <li><span>🛡️</span> Special King Custom Armor set</li>
+                        <li><span>⛏️</span> Mining & action buffs for your entire nation</li>
+                    </ul>
+                    <button class="buy-btn">Purchase Rank</button>
+                </div>
 
+                <div class="store-card rank-card" data-store-cat="ranks">
+                    <div class="store-card-header">
+                        <span class="item-icon">⚔️</span>
+                        <h3>Knight Rank</h3>
+                        <div class="item-price">$2.99</div>
+                    </div>
+                    <ul class="item-perks">
+                        <li><span>📦</span> <strong>1 "Knight Crate" every 3 days</strong></li>
+                        <li><span>🛡️</span> Full Knight Armor (Diamond equivalent)</li>
+                        <li><span>🗡️</span> Exclusive weapon set included</li>
+                    </ul>
+                    <button class="buy-btn">Purchase Rank</button>
+                </div>
 
+                <div class="store-card" data-store-cat="boosters">
+                    <div class="store-card-header">
+                        <span class="item-icon">⛏️</span>
+                        <h3>Mining Buffs</h3>
+                        <div class="item-price">From $5.00</div>
+                    </div>
+                    <p class="store-card-desc">Boost your nation's resource output for a limited time.</p>
+                    <div class="tier-selector">
+                        <label>Select Duration:</label>
+                        <select class="tier-select">
+                            <option value="5">1 Hour Buff — $5.00</option>
+                            <option value="10">2 Hours Buff — $10.00</option>
+                            <option value="15">3 Hours Buff — $15.00</option>
+                            <option value="20">4 Hours Buff — $20.00</option>
+                            <option value="25">5 Hours Buff — $25.00</option>
+                        </select>
+                    </div>
+                    <button class="buy-btn">Buy Mining Buff</button>
+                </div>
 
-            <p>
-                Add this address in Multiplayer:
-            </p>
+                <div class="store-card" data-store-cat="currency">
+                    <div class="store-card-header">
+                        <span class="item-icon">💰</span>
+                        <h3>In-Game Coins</h3>
+                        <div class="item-price">From $1.00</div>
+                    </div>
+                    <p class="store-card-desc">Standard server economy currency for trade and nation expansion.</p>
+                    <div class="tier-selector">
+                        <label>Select Amount:</label>
+                        <select class="tier-select">
+                            <option value="1">5,000 Coins — $1.00</option>
+                            <option value="3">15,000 Coins — $3.00</option>
+                            <option value="5">25,000 Coins — $5.00</option>
+                            <option value="10">50,000 Coins — $10.00</option>
+                        </select>
+                    </div>
+                    <button class="buy-btn">Buy Coins</button>
+                </div>
 
-
-
-            <div 
-                class="ip-box copy-ip-trigger"
-                data-ip="globalmc.hypixels.pl"
-            >
-
-                <code>
-                    globalmc.hypixels.pl
-                </code>
-
-
-                <span>
-                    📋
-                </span>
-
+                <div class="store-card" data-store-cat="currency">
+                    <div class="store-card-header">
+                        <span class="item-icon">🎰</span>
+                        <h3>Premium Chips</h3>
+                        <div class="item-price">From $2.00</div>
+                    </div>
+                    <p class="store-card-desc">Exclusive premium tokens used for special events and rare items.</p>
+                    <div class="tier-selector">
+                        <label>Select Quantity:</label>
+                        <select class="tier-select">
+                            <option value="2">1 Chip — $2.00</option>
+                            <option value="10">5 Chips — $10.00</option>
+                            <option value="20">10 Chips — $20.00</option>
+                            <option value="50">25 Chips — $50.00</option>
+                            <option value="100">50 Chips — $100.00</option>
+                        </select>
+                    </div>
+                    <button class="buy-btn">Buy Chips</button>
+                </div>
 
             </div>
+        </section>
 
+    </main>
 
-        </div>
-
-
-
-
-
-        <div class="step-card highlight">
-
-
-            <div class="step-header">
-
-                <span class="step-num">
-                    03
-                </span>
-
-                <span class="step-badge green">
-                    Ready
-                </span>
-
-
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#home" class="logo nav-trigger" data-target="home">Global<span>MC</span></a>
+                <p>Geopolitical Political Sandbox Server</p>
             </div>
-
-
-            <h3>
-                Make History
-            </h3>
-
-
-            <p>
-                Build nations, create alliances and shape the world.
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-
-
-
-
-    <div class="launcher-showcase">
-
-
-        <div class="launcher-badge">
-
-            <span class="pulse-dot"></span>
-
-            OPEN BETA v0.1.0
-
-        </div>
-
-
-
-
-        <h3 class="launcher-title">
-
-            Play with
-            <span class="gradient-text">
-                GlobalMC Launcher
-            </span>
-
-        </h3>
-
-
-
-        <p class="launcher-desc">
-
-            Our launcher provides a simple way to connect directly to GlobalMC.
-
-        </p>
-
-
-
-        <a
-
-            href="https://drive.google.com/file/d/12UIdGEj9SAUPy_6pbuh9V_ti3Jq7x936/view?usp=sharing"
-
-            target="_blank"
-
-            rel="noopener noreferrer"
-
-            class="download-btn-premium"
-
-        >
-
-            📥 Download GlobalMC Launcher
-
-        </a>
-
-
-    </div>
-
-
-
-
-
-
-    <div class="discord-card">
-
-
-        <h3>
-            Join our Discord Community
-        </h3>
-
-
-        <p>
-            Chat with players, get news and participate in events.
-        </p>
-
-
-        <a
-
-            href="https://discord.gg/eGsWQxwkas"
-
-            target="_blank"
-
-            rel="noopener noreferrer"
-
-            class="discord-large-btn"
-
-        >
-
-            💬 Join Discord
-
-        </a>
-
-
-    </div>
-
-
-
-</section>
-
-
-
-
-
-
-
-<section id="store" class="page-section">
-
-
-    <div class="section-header">
-
-        <h2>
-            Server Store
-        </h2>
-
-
-        <p>
-            Support GlobalMC and get exclusive perks.
-        </p>
-
-
-    </div>
-
-
-
-    <div class="store-grid">
-
-
-        <div class="store-card featured">
-
-
-            <div class="item-icon">
-                👑
+            <div class="footer-copy">
+                <p>&copy; 2026 GlobalMC Project. All rights reserved.</p>
             </div>
-
-
-            <h3>
-                Emperor Rank
-            </h3>
-
-
-            <div class="item-price">
-                $10.99
-            </div>
-
-
-            <button class="buy-btn">
-                Purchase Rank
-            </button>
-
-
         </div>
+    </footer>
 
+    <div id="toast" class="toast">IP address copied to clipboard!</div>
 
+    <script>
+        // Placeholder for server API integration
+        document.getElementById("server-status").textContent = "🟢 Online";
+        document.getElementById("player-count").textContent = "0 / 100";
+    </script>
 
-        <div class="store-card">
-
-
-            <div class="item-icon">
-                ⚔️
-            </div>
-
-
-            <h3>
-                Knight Rank
-            </h3>
-
-
-            <div class="item-price">
-                $2.99
-            </div>
-
-
-            <button class="buy-btn">
-                Purchase Rank
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-
-
-</main>
-
-
-
-
-
-
-
-<footer class="main-footer">
-
-
-    <div class="footer-container">
-
-
-        <div class="footer-brand">
-
-            <h3>
-                GlobalMC
-            </h3>
-
-
-            <p>
-                Build Empires. Shape History.
-            </p>
-
-        </div>
-
-
-
-        <a
-
-            href="https://discord.gg/eGsWQxwkas"
-
-            target="_blank"
-
-            rel="noopener noreferrer"
-
-            class="discord-btn"
-
-        >
-
-            Discord
-
-        </a>
-
-
-
-    </div>
-
-
-</footer>
-
-
-
-
-
-
-<div 
-    class="toast"
-    id="toast"
->
-</div>
-
-
-
-
-<script src="script.js"></script>
-
-
+    <script src="script.js"></script>
 </body>
 </html>
