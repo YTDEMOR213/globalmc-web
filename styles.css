@@ -4,10 +4,8 @@
     --card-inner: #172030;
     --card-border: #1e293b;
     --card-border-hover: #334155;
-    
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
-    
     --accent-blue: #0ea5e9;
     --accent-green: #10b981;
     --accent-gold: #f59e0b;
@@ -16,10 +14,46 @@
     --gradient-glow: linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
 }
 
+/* 🔧 ИСПРАВЛЕНО: был пустой блок без селектора */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+/* ✨ НОВОЕ: стили выделения текста */
+::selection {
+    background: rgba(16, 185, 129, 0.3);
+    color: var(--text-main);
+}
+
+::-moz-selection {
+    background: rgba(16, 185, 129, 0.3);
+    color: var(--text-main);
+}
+
+/* ✨ НОВОЕ: кастомный скроллбар */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--card-border);
+    border-radius: 5px;
+    transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--card-border-hover);
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -31,11 +65,22 @@ body {
     flex-direction: column;
     position: relative;
     overflow-x: hidden;
-    background-image: 
+    background-image:
         radial-gradient(rgba(14, 165, 233, 0.07) 1px, transparent 1px),
         radial-gradient(rgba(16, 185, 129, 0.07) 1px, transparent 1px);
     background-size: 32px 32px;
     background-position: 0 0, 16px 16px;
+}
+
+/* ✨ НОВОЕ: доступность — focus-visible */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible,
+.ip-pill-btn:focus-visible,
+.ip-box:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
 }
 
 /* Background Ambient Lighting Blobs */
@@ -66,6 +111,7 @@ body {
 .navbar {
     background-color: rgba(11, 16, 25, 0.85);
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--card-border);
     position: sticky;
     top: 0;
@@ -87,6 +133,7 @@ body {
     color: var(--text-main);
     text-decoration: none;
     letter-spacing: -0.5px;
+    cursor: pointer;
 }
 
 .logo span {
@@ -108,6 +155,7 @@ body {
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s ease;
+    font-family: inherit;
 }
 
 .nav-btn:hover {
@@ -131,6 +179,7 @@ body {
     gap: 10px;
     cursor: pointer;
     transition: border-color 0.2s ease, transform 0.2s ease;
+    font-family: inherit;
 }
 
 .ip-pill-btn:hover {
@@ -162,6 +211,12 @@ body {
     border-radius: 10px;
 }
 
+/* ✨ НОВОЕ: cursor для всех copy-триггеров */
+.copy-ip-trigger,
+.nav-trigger {
+    cursor: pointer;
+}
+
 /* Content Container & Page Transitions */
 .content-wrapper {
     max-width: 1240px;
@@ -185,6 +240,22 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* ✨ НОВОЕ: анимация появления карточек при скролле */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in {
+    animation: slideInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Section Header */
@@ -226,6 +297,7 @@ body {
     padding: 6px 18px;
     border-radius: 20px;
     letter-spacing: 1.5px;
+    display: inline-block;
 }
 
 .hero-title {
@@ -240,6 +312,7 @@ body {
     background: var(--gradient-accent);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-subtitle {
@@ -269,11 +342,17 @@ body {
     align-items: center;
     transition: transform 0.2s ease, filter 0.2s ease;
     box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+    font-family: inherit;
+    font-size: 1rem;
 }
 
 .primary-btn:hover {
     transform: translateY(-2px);
     filter: brightness(1.1);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
 }
 
 .ip-display {
@@ -293,6 +372,7 @@ body {
     font-size: 1rem;
     cursor: pointer;
     transition: border-color 0.2s ease, background-color 0.2s ease;
+    font-family: inherit;
 }
 
 .secondary-btn:hover {
@@ -310,6 +390,8 @@ body {
     justify-content: center;
     align-items: center;
     margin: 40px 0 60px 0;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
 .stat-item {
@@ -350,6 +432,11 @@ body {
     font-size: 1rem;
     outline: none;
     transition: border-color 0.2s ease;
+    font-family: inherit;
+}
+
+.rules-search-box input::placeholder {
+    color: var(--text-muted);
 }
 
 .rules-search-box input:focus {
@@ -372,6 +459,7 @@ body {
     font-size: 0.88rem;
     cursor: pointer;
     transition: all 0.2s ease;
+    font-family: inherit;
 }
 
 .rule-cat-btn:hover {
@@ -398,11 +486,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .rule-card:hover {
     border-color: var(--card-border-hover);
+    transform: translateY(-2px);
 }
 
 .rule-number {
@@ -445,6 +534,7 @@ body {
     border-radius: 50%;
     background-color: var(--accent-green);
     box-shadow: 0 0 8px var(--accent-green);
+    animation: pulse 1.8s infinite;
 }
 
 .map-actions {
@@ -463,6 +553,10 @@ body {
     cursor: pointer;
     text-decoration: none;
     transition: border-color 0.2s ease;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .map-btn:hover {
@@ -564,11 +658,12 @@ body {
     align-items: center;
     cursor: pointer;
     margin-top: 5px;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .ip-box:hover {
     border-color: var(--accent-green);
+    transform: translateY(-1px);
 }
 
 .ip-box code {
@@ -622,6 +717,8 @@ body {
     border-radius: 20px;
     letter-spacing: 1px;
     margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
 }
 
 .pulse-dot {
@@ -645,6 +742,8 @@ body {
     line-height: 1.25;
     margin-bottom: 12px;
     color: var(--text-main);
+    position: relative;
+    z-index: 1;
 }
 
 .launcher-desc {
@@ -653,6 +752,8 @@ body {
     line-height: 1.6;
     max-width: 650px;
     margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
 }
 
 .launcher-features {
@@ -662,6 +763,8 @@ body {
     width: 100%;
     max-width: 700px;
     margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
 }
 
 .feature-pill {
@@ -707,6 +810,8 @@ body {
     gap: 12px;
     width: 100%;
     max-width: 420px;
+    position: relative;
+    z-index: 1;
 }
 
 .download-btn-premium {
@@ -722,6 +827,7 @@ body {
     border-radius: 14px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     box-shadow: 0 6px 25px rgba(16, 185, 129, 0.35);
+    font-weight: 700;
 }
 
 .download-btn-premium:hover {
@@ -757,9 +863,8 @@ body {
 }
 
 /* ==========================================================================
-   STORE / DONATIONS SECTION STYLES
-   ========================================================================== */
-
+STORE / DONATIONS SECTION STYLES
+========================================================================== */
 .store-filter-bar {
     display: flex;
     justify-content: center;
@@ -778,6 +883,7 @@ body {
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.2s ease;
+    font-family: inherit;
 }
 
 .store-cat-btn:hover {
@@ -918,6 +1024,14 @@ body {
     outline: none;
     cursor: pointer;
     transition: border-color 0.2s ease;
+    font-family: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
 }
 
 .tier-select:focus {
@@ -935,6 +1049,7 @@ body {
     font-size: 0.95rem;
     cursor: pointer;
     transition: filter 0.2s ease, transform 0.2s ease;
+    font-family: inherit;
 }
 
 .store-card.featured .buy-btn {
@@ -944,6 +1059,10 @@ body {
 .buy-btn:hover {
     filter: brightness(1.1);
     transform: translateY(-1px);
+}
+
+.buy-btn:active {
+    transform: translateY(0);
 }
 
 /* Toast Notice */
@@ -961,6 +1080,7 @@ body {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     z-index: 1000;
+    pointer-events: none;
 }
 
 .toast.show {
@@ -1002,10 +1122,22 @@ body {
     .launcher-features {
         grid-template-columns: 1fr;
     }
+    .stats-bar {
+        gap: 20px;
+    }
+    .nav-links {
+        display: none; /* На мобилке лучше бургер-меню, но пока скрываем */
+    }
 }
 
 @media (max-width: 768px) {
     .hero-title { font-size: 2.5rem; }
+    .section-header h2 { font-size: 1.8rem; }
     .map-controls { flex-direction: column; gap: 10px; align-items: flex-start; }
     .map-wrapper { height: 500px; }
+    .rules-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .store-grid { grid-template-columns: 1fr; }
+    .launcher-showcase { padding: 30px 20px; }
+    .launcher-title { font-size: 1.6rem; }
 }
