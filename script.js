@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // =========================================================================
-    // 1. Navigation & Sub-site Tab Switcher
-    // =========================================================================
+    // Navigation
     const navButtons = document.querySelectorAll('.nav-btn');
     const pageSections = document.querySelectorAll('.page-section');
     const navTriggers = document.querySelectorAll('.nav-trigger');
+    const burgerBtn = document.getElementById('burger-btn');
+    const navLinks = document.getElementById('nav-links');
 
     function switchTab(targetId) {
         navButtons.forEach(btn => {
@@ -15,14 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        const newUrl = `${window.location.pathname}#${targetId}`;
-        history.replaceState(null, '', newUrl);
+        // Close mobile menu after switching
+        if (navLinks && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            burgerBtn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     }
 
     navButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            switchTab(button.dataset.target);
-        });
+        button.addEventListener('click', () => switchTab(button.dataset.target));
     });
 
     navTriggers.forEach(trigger => {
@@ -32,23 +34,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Burger menu
+    if (burgerBtn && navLinks) {
+        burgerBtn.addEventListener('click', () => {
+            burgerBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !burgerBtn.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                burgerBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // Open correct tab from URL hash
     const initialHash = window.location.hash.replace('#', '');
     if (initialHash && document.getElementById(initialHash)) {
         switchTab(initialHash);
     }
 
-    // =========================================================================
-    // 2. Copy IP to Clipboard & Toast Trigger
-    // =========================================================================
+    // Copy IP
     const toast = document.getElementById('toast');
 
     function showToast(message, duration = 2500) {
         if (!toast) return;
         toast.textContent = message;
         toast.classList.add('show');
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, duration);
+        setTimeout(() => toast.classList.remove('show'), duration);
     }
 
     document.addEventListener('click', (e) => {
@@ -62,10 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function copyToClipboard(text) {
         if (navigator.clipboard && window.isSecureContext) {
             navigator.clipboard.writeText(text).then(() => {
-                showToast('✅ IP address copied to clipboard!');
-            }).catch(() => {
-                fallbackCopy(text);
-            });
+                showToast('IP address copied to clipboard!');
+            }).catch(() => fallbackCopy(text));
         } else {
             fallbackCopy(text);
         }
@@ -80,19 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
         textarea.select();
         try {
             document.execCommand('copy');
-            showToast('✅ IP address copied to clipboard!');
+            showToast('IP address copied to clipboard!');
         } catch (err) {
-            showToast('❌ Failed to copy IP');
+            showToast('Failed to copy IP');
         }
         document.body.removeChild(textarea);
     }
 
-    // =========================================================================
-    // 3. Live Server Status через mcsrvstatus.us API
-    // =========================================================================
+    // Server status
     const SERVER_IP = 'globalmc.hypixels.pl';
     const API_URL = `https://api.mcsrvstat.us/2/${SERVER_IP}`;
-
     const statusEl = document.getElementById('server-status');
     const playersEl = document.getElementById('server-players');
     const versionEl = document.getElementById('server-version');
@@ -101,11 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchServerStatus() {
         try {
             if (statusEl && statusEl.textContent.includes('Loading')) {
-                statusEl.innerHTML = '<span class="status-indicator loading">⏳ Checking...</span>';
+                statusEl.innerHTML = '<span class="status-indicator loading">Checking...</span>';
             }
 
             const response = await fetch(API_URL, { cache: 'no-store' });
-
             if (!response.ok) throw new Error('API request failed');
 
             const data = await response.json();
@@ -116,37 +127,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const max = players.max ?? 100;
                 const version = data.version || '1.21.11';
 
-                if (statusEl) {
-                    statusEl.innerHTML = '<span class="status-indicator online">🟢 Online</span>';
-                }
+                if (statusEl) statusEl.innerHTML = '<span class="status-indicator online">Online</span>';
                 if (playersEl) {
                     playersEl.textContent = `${online} / ${max}`;
-                    if (online >= max * 0.9) {
-                        playersEl.style.color = 'var(--accent-gold)';
-                    } else {
-                        playersEl.style.color = '';
-                    }
+                    playersEl.style.color = online >= max * 0.9 ? 'var(--accent-gold)' : '';
                 }
-                if (versionEl) {
-                    versionEl.textContent = version;
-                }
+                if (versionEl) versionEl.textContent = version;
                 if (navOnlineDot) {
                     navOnlineDot.classList.remove('offline');
-                    navOnlineDot.classList.add('online');
                 }
             } else {
-                setServerOffline('Server is offline');
+                setServerOffline('Offline');
             }
         } catch (error) {
-            console.warn('Failed to fetch server status:', error);
-            setServerOffline('Status unavailable');
+            setServerOffline('Unavailable');
         }
     }
 
     function setServerOffline(message) {
-        if (statusEl) {
-            statusEl.innerHTML = `<span class="status-indicator offline">🔴 ${message}</span>`;
-        }
+        if (statusEl) statusEl.innerHTML = `<span class="status-indicator offline">${message}</span>`;
         if (playersEl) {
             playersEl.textContent = '0 / 0';
             playersEl.style.color = 'var(--text-muted)';
@@ -160,9 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchServerStatus();
     setInterval(fetchServerStatus, 60 * 1000);
 
-    // =========================================================================
-    // 4. Rules Live Search & Category Filter
-    // =========================================================================
+    // Rules search
     const searchInput = document.getElementById('rules-search');
     const categoryBtns = document.querySelectorAll('.rule-cat-btn');
     const ruleCards = document.querySelectorAll('.rule-card');
@@ -190,25 +187,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (rulesGrid) {
                 noResults = document.createElement('div');
                 noResults.id = 'rules-no-results';
-                noResults.style.cssText = `
-                    grid-column: 1 / -1;
-                    text-align: center;
-                    padding: 40px 20px;
-                    color: var(--text-muted);
-                    font-size: 1rem;
-                `;
+                noResults.style.cssText = 'grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--text-muted);';
                 rulesGrid.parentNode.insertBefore(noResults, rulesGrid.nextSibling);
             }
         }
         if (noResults) {
             noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-            noResults.textContent = '🔍 No rules found matching your search.';
+            noResults.textContent = 'No rules found matching your search.';
         }
     }
 
-    if (searchInput) {
-        searchInput.addEventListener('input', filterRules);
-    }
+    if (searchInput) searchInput.addEventListener('input', filterRules);
 
     categoryBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -219,27 +208,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // =========================================================================
-    // 5. DynMap Reload Button
-    // =========================================================================
+    // DynMap reload
     const reloadMapBtn = document.getElementById('reload-map-btn');
     const mapIframe = document.getElementById('dynmap-iframe');
 
     if (reloadMapBtn && mapIframe) {
         reloadMapBtn.addEventListener('click', () => {
-            reloadMapBtn.textContent = '⏳ Reloading...';
+            reloadMapBtn.textContent = 'Reloading...';
             reloadMapBtn.disabled = true;
             mapIframe.src = mapIframe.src;
             setTimeout(() => {
-                reloadMapBtn.textContent = '🔄 Reload Map';
+                reloadMapBtn.textContent = 'Reload Map';
                 reloadMapBtn.disabled = false;
             }, 1500);
         });
     }
 
-    // =========================================================================
-    // 6. Store Category Filter Switcher
-    // =========================================================================
+    // Store filter
     const storeCatBtns = document.querySelectorAll('.store-cat-btn');
     const storeCards = document.querySelectorAll('.store-card');
 
@@ -250,20 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedCat = btn.dataset.storeCat;
 
             storeCards.forEach(card => {
-                if (selectedCat === 'all' || card.dataset.storeCat === selectedCat) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (selectedCat === 'all' || card.dataset.storeCat === selectedCat) ? 'flex' : 'none';
             });
         });
     });
 
-    // =========================================================================
-    // 7. Buy Button Handler
-    // =========================================================================
-    const buyButtons = document.querySelectorAll('.buy-btn');
-    buyButtons.forEach(btn => {
+    // Buy buttons
+    document.querySelectorAll('.buy-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const card = btn.closest('.store-card');
@@ -274,48 +252,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selectedOption = tierSelect.options[tierSelect.selectedIndex];
                 selectedTier = selectedOption ? ` — ${selectedOption.textContent}` : '';
             }
-            showToast(`🛒 Opening payment for: ${itemName}${selectedTier}`);
+            showToast(`Opening payment for: ${itemName}${selectedTier}`);
             setTimeout(() => {
                 window.open('https://www.donationalerts.com/r/nikitabebrechka', '_blank');
             }, 600);
         });
     });
 
-    // =========================================================================
-    // 8. Intersection Observer — плавное появление карточек
-    // =========================================================================
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
+    // Scroll animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('animate-in');
-                }, index * 60);
+                setTimeout(() => entry.target.classList.add('animate-in'), index * 60);
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    const animatedElements = document.querySelectorAll(
-        '.rule-card, .step-card, .store-card, .feature-pill, .stat-item'
-    );
-    animatedElements.forEach(el => {
+    document.querySelectorAll('.rule-card, .step-card, .store-card, .stat-item').forEach(el => {
         el.style.opacity = '0';
         observer.observe(el);
     });
 
-    // =========================================================================
-    // 9. Keyboard shortcuts
-    // =========================================================================
+    // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && toast) {
-            toast.classList.remove('show');
-        }
-
+        if (e.key === 'Escape' && toast) toast.classList.remove('show');
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             const rulesSection = document.getElementById('rules');
             if (rulesSection && rulesSection.classList.contains('active') && searchInput) {
@@ -325,9 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // =========================================================================
-    // 10. Smooth scroll for anchor links
-    // =========================================================================
+    // Smooth scroll for anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -349,7 +308,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    console.log('%c🌍 GlobalMC', 'font-size: 24px; font-weight: bold; color: #10b981;');
-    console.log('%cGeopolitical Minecraft Server', 'font-size: 12px; color: #94a3b8;');
 });
