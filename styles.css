@@ -20,18 +20,12 @@
     padding: 0;
 }
 
-/* ✨ ИСПРАВЛЕНО: убираем подчёркивание у всех ссылок по умолчанию */
 a {
     text-decoration: none;
     color: inherit;
 }
 
 ::selection {
-    background: rgba(16, 185, 129, 0.3);
-    color: var(--text-main);
-}
-
-::-moz-selection {
     background: rgba(16, 185, 129, 0.3);
     color: var(--text-main);
 }
@@ -48,7 +42,6 @@ a {
 ::-webkit-scrollbar-thumb {
     background: var(--card-border);
     border-radius: 5px;
-    transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -78,14 +71,12 @@ body {
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
-a:focus-visible,
-.ip-pill-btn:focus-visible,
-.ip-box:focus-visible {
+a:focus-visible {
     outline: 2px solid var(--accent-blue);
     outline-offset: 2px;
 }
 
-/* Background Ambient Lighting Blobs */
+/* Background glow */
 .glow-bg {
     position: absolute;
     width: 600px;
@@ -109,7 +100,7 @@ a:focus-visible,
     background: var(--accent-green);
 }
 
-/* Header Navbar */
+/* Navbar */
 .navbar {
     background-color: rgba(11, 16, 25, 0.85);
     backdrop-filter: blur(14px);
@@ -127,15 +118,15 @@ a:focus-visible,
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
 }
 
 .logo {
     font-size: 1.6rem;
     font-weight: 900;
     color: var(--text-main);
-    text-decoration: none;
     letter-spacing: -0.5px;
-    cursor: pointer;
+    flex-shrink: 0;
 }
 
 .logo span {
@@ -159,9 +150,7 @@ a:focus-visible,
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: inherit;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
+    white-space: nowrap;
 }
 
 .nav-btn:hover {
@@ -174,18 +163,47 @@ a:focus-visible,
     border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
-/* ✨ ИСПРАВЛЕНО: стили для Discord-ссылки в навбаре */
-.discord-link {
-    color: var(--text-muted);
-    text-decoration: none;
-}
-
 .discord-link:hover {
     color: #5865F2;
     background: rgba(88, 101, 242, 0.1);
 }
 
-/* IP Pill button in header */
+/* Burger menu (mobile only) */
+.burger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+}
+
+.burger-btn span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.burger-btn.active span:nth-child(1) {
+    transform: translateY(9.5px) rotate(45deg);
+}
+
+.burger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-btn.active span:nth-child(3) {
+    transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* IP Pill button */
 .ip-pill-btn {
     background-color: var(--card-inner);
     border: 1px solid var(--card-border);
@@ -197,6 +215,7 @@ a:focus-visible,
     cursor: pointer;
     transition: border-color 0.2s ease, transform 0.2s ease;
     font-family: inherit;
+    flex-shrink: 0;
 }
 
 .ip-pill-btn:hover {
@@ -216,11 +235,6 @@ a:focus-visible,
 .online-indicator.offline {
     background-color: #ef4444;
     box-shadow: 0 0 8px #ef4444;
-}
-
-.online-indicator.online {
-    background-color: var(--accent-green);
-    box-shadow: 0 0 8px var(--accent-green);
 }
 
 .ip-text {
@@ -244,7 +258,7 @@ a:focus-visible,
     cursor: pointer;
 }
 
-/* Content Container & Page Transitions */
+/* Content */
 .content-wrapper {
     max-width: 1240px;
     margin: 40px auto;
@@ -270,21 +284,15 @@ a:focus-visible,
 }
 
 @keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-in {
     animation: slideInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Section Header */
+/* Section header */
 .section-header {
     text-align: center;
     max-width: 700px;
@@ -302,7 +310,7 @@ a:focus-visible,
     font-size: 1.05rem;
 }
 
-/* Hero Section */
+/* Hero */
 .hero-section {
     text-align: center;
     padding: 40px 20px 30px 20px;
@@ -377,10 +385,6 @@ a:focus-visible,
     filter: brightness(1.1);
 }
 
-.primary-btn:active {
-    transform: translateY(0);
-}
-
 .ip-display {
     font-size: 0.75rem;
     opacity: 0.9;
@@ -406,7 +410,7 @@ a:focus-visible,
     background-color: var(--card-inner);
 }
 
-/* Stats Bar */
+/* Stats bar */
 .stats-bar {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -440,16 +444,13 @@ a:focus-visible,
     color: var(--text-main);
 }
 
-/* ✨ НОВОЕ: Discord invite box с правильным выравниванием */
+/* Discord invite */
 .discord-invite-box {
     background: linear-gradient(135deg, rgba(88, 101, 242, 0.08) 0%, rgba(17, 23, 35, 0.9) 100%);
     border: 1px solid rgba(88, 101, 242, 0.3);
     border-radius: 16px;
     padding: 30px 35px;
     margin: 20px 0 60px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .discord-invite-content {
@@ -457,8 +458,6 @@ a:focus-visible,
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    width: 100%;
-    max-width: 900px;
     flex-wrap: wrap;
 }
 
@@ -471,7 +470,6 @@ a:focus-visible,
     font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 8px;
-    color: var(--text-main);
 }
 
 .discord-invite-text p {
@@ -487,13 +485,11 @@ a:focus-visible,
     border-radius: 12px;
     font-weight: 700;
     font-size: 1rem;
-    text-decoration: none;
     transition: all 0.2s ease;
     box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
 }
 
 .discord-join-btn:hover {
@@ -502,7 +498,7 @@ a:focus-visible,
     box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
 }
 
-/* Rules Section Styling */
+/* Rules */
 .rules-toolbar {
     display: flex;
     flex-direction: column;
@@ -562,7 +558,7 @@ a:focus-visible,
 
 .rules-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 16px;
 }
 
@@ -595,7 +591,7 @@ a:focus-visible,
     font-size: 0.98rem;
 }
 
-/* DynMap Section Styling */
+/* DynMap */
 .map-controls {
     display: flex;
     justify-content: space-between;
@@ -605,6 +601,8 @@ a:focus-visible,
     padding: 12px 20px;
     border-radius: 12px 12px 0 0;
     border-bottom: none;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .map-status {
@@ -628,6 +626,7 @@ a:focus-visible,
 .map-actions {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .map-btn {
@@ -639,7 +638,6 @@ a:focus-visible,
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    text-decoration: none;
     transition: border-color 0.2s ease;
     font-family: inherit;
     display: inline-flex;
@@ -667,10 +665,10 @@ a:focus-visible,
     border: none;
 }
 
-/* How to Join Step Grid */
+/* Steps */
 .steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
 }
 
@@ -759,198 +757,10 @@ a:focus-visible,
     font-size: 0.95rem;
     color: var(--accent-green);
     font-weight: 700;
+    word-break: break-all;
 }
 
-/* Launcher Showcase */
-.launcher-showcase {
-    margin-top: 50px;
-    background: linear-gradient(135deg, rgba(17, 23, 35, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    border-radius: 20px;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 850px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    position: relative;
-    overflow: hidden;
-}
-
-.launcher-showcase::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 450px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.launcher-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(16, 185, 129, 0.12);
-    border: 1px solid rgba(16, 185, 129, 0.4);
-    color: var(--accent-green);
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 6px 14px;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    margin-bottom: 16px;
-    position: relative;
-    z-index: 1;
-}
-
-.pulse-dot {
-    width: 7px;
-    height: 7px;
-    background-color: var(--accent-green);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--accent-green);
-    animation: pulse 1.8s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-    70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-
-.launcher-title {
-    font-size: 2.1rem;
-    font-weight: 900;
-    line-height: 1.25;
-    margin-bottom: 12px;
-    color: var(--text-main);
-    position: relative;
-    z-index: 1;
-}
-
-.launcher-desc {
-    color: var(--text-muted);
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 650px;
-    margin-bottom: 28px;
-    position: relative;
-    z-index: 1;
-}
-
-.launcher-features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 32px;
-    position: relative;
-    z-index: 1;
-}
-
-.feature-pill {
-    background-color: var(--card-inner);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-align: left;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-.feature-pill:hover {
-    border-color: var(--accent-blue);
-    transform: translateY(-2px);
-}
-
-.pill-icon {
-    font-size: 1.5rem;
-}
-
-.pill-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.pill-text strong {
-    font-size: 0.9rem;
-    color: var(--text-main);
-}
-
-.pill-text span {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-}
-
-.launcher-download-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    max-width: 420px;
-    position: relative;
-    z-index: 1;
-}
-
-.download-btn-premium {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    background: var(--gradient-accent);
-    color: #ffffff;
-    text-decoration: none;
-    padding: 16px 28px;
-    border-radius: 14px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-    box-shadow: 0 6px 25px rgba(16, 185, 129, 0.35);
-    font-weight: 700;
-}
-
-.download-btn-premium:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.08);
-    box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
-}
-
-.download-icon {
-    font-size: 1.6rem;
-}
-
-.download-btn-text {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-.btn-main-label {
-    font-size: 1.05rem;
-    font-weight: 800;
-}
-
-.btn-sub-label {
-    font-size: 0.78rem;
-    opacity: 0.9;
-    font-weight: 500;
-}
-
-.os-support-info {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-}
-
-/* Store / Donations Section Styles */
+/* Store */
 .store-filter-bar {
     display: flex;
     justify-content: center;
@@ -984,7 +794,7 @@ a:focus-visible,
 
 .store-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
 }
 
@@ -1144,11 +954,7 @@ a:focus-visible,
     transform: translateY(-1px);
 }
 
-.buy-btn:active {
-    transform: translateY(0);
-}
-
-/* Toast Notice */
+/* Toast */
 .toast {
     position: fixed;
     bottom: 30px;
@@ -1164,11 +970,46 @@ a:focus-visible,
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     z-index: 1000;
     pointer-events: none;
+    max-width: calc(100vw - 60px);
 }
 
 .toast.show {
     transform: translateY(0);
     opacity: 1;
+}
+
+/* Status indicators */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.status-indicator.online {
+    color: var(--accent-green);
+}
+
+.status-indicator.offline {
+    color: #ef4444;
+}
+
+.status-indicator.loading {
+    color: var(--text-muted);
+    animation: pulse-text 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes pulse-text {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
 /* Footer */
@@ -1200,63 +1041,258 @@ a:focus-visible,
     font-size: 0.85rem;
 }
 
-/* Server Status Indicators */
-.status-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 700;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+/* ==========================================================================
+   MOBILE ADAPTATION
+========================================================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .hero-title { font-size: 2.8rem; }
+    .section-header h2 { font-size: 2rem; }
+    .glow-bg { width: 400px; height: 400px; }
 }
 
-.status-indicator.online {
-    color: var(--accent-green);
-}
-
-.status-indicator.offline {
-    color: #ef4444;
-}
-
-.status-indicator.loading {
-    color: var(--text-muted);
-    animation: pulse-text 1.2s ease-in-out infinite;
-}
-
-@keyframes pulse-text {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
-    .launcher-features {
-        grid-template-columns: 1fr;
+/* Mobile */
+@media (max-width: 768px) {
+    /* Burger menu */
+    .burger-btn {
+        display: flex;
     }
-    .stats-bar {
-        gap: 20px;
-    }
+
     .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: var(--card-bg);
+        border-left: 1px solid var(--card-border);
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        gap: 8px;
+        transition: right 0.3s ease;
+        z-index: 99;
+        overflow-y: auto;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links .nav-btn {
+        width: 100%;
+        text-align: left;
+        padding: 12px 18px;
+    }
+
+    .nav-container {
+        padding: 12px 16px;
+    }
+
+    /* Hide IP text on small screens, show only dot + badge */
+    .ip-pill-btn {
+        padding: 6px 10px;
+        gap: 6px;
+    }
+
+    .ip-text {
         display: none;
     }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    /* Hero */
+    .hero-section {
+        padding: 24px 10px 20px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+
+    .badge {
+        font-size: 0.65rem;
+        padding: 5px 14px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Stats */
+    .stats-bar {
+        gap: 20px;
+        padding: 20px;
+        margin: 24px 0;
+    }
+
+    .stat-value {
+        font-size: 1.05rem;
+    }
+
+    /* Discord box */
+    .discord-invite-box {
+        padding: 24px 20px;
+        margin: 20px 0 40px;
+    }
+
     .discord-invite-content {
         flex-direction: column;
         text-align: center;
+        gap: 20px;
     }
+
+    .discord-invite-text {
+        min-width: 0;
+    }
+
+    .discord-invite-text h3 {
+        font-size: 1.2rem;
+    }
+
     .discord-join-btn {
         width: 100%;
         justify-content: center;
     }
+
+    /* Section header */
+    .section-header {
+        margin-bottom: 24px;
+    }
+
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .section-header p {
+        font-size: 0.95rem;
+    }
+
+    /* Content wrapper */
+    .content-wrapper {
+        margin: 20px auto;
+        padding: 0 16px;
+    }
+
+    /* Rules */
+    .rules-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rules-categories {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .rule-cat-btn {
+        flex-shrink: 0;
+    }
+
+    /* DynMap */
+    .map-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .map-actions {
+        width: 100%;
+    }
+
+    .map-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .map-wrapper {
+        height: 450px;
+    }
+
+    /* Steps */
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .step-card {
+        padding: 24px 20px;
+    }
+
+    .step-num {
+        font-size: 1.5rem;
+    }
+
+    /* Store */
+    .store-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .store-card {
+        padding: 22px;
+    }
+
+    .store-filter-bar {
+        overflow-x: auto;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .store-cat-btn {
+        flex-shrink: 0;
+    }
+
+    /* Toast */
+    .toast {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        max-width: none;
+        text-align: center;
+    }
+
+    /* Footer */
+    .main-footer {
+        margin-top: 40px;
+        padding: 30px 16px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
-@media (max-width: 768px) {
-    .hero-title { font-size: 2.5rem; }
-    .section-header h2 { font-size: 1.8rem; }
-    .map-controls { flex-direction: column; gap: 10px; align-items: flex-start; }
-    .map-wrapper { height: 500px; }
-    .rules-grid { grid-template-columns: 1fr; }
-    .steps-grid { grid-template-columns: 1fr; }
-    .store-grid { grid-template-columns: 1fr; }
-    .launcher-showcase { padding: 30px 20px; }
-    .launcher-title { font-size: 1.6rem; }
+/* Small phones */
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: 1.7rem;
+    }
+
+    .stats-bar {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .ip-box code {
+        font-size: 0.85rem;
+    }
 }
