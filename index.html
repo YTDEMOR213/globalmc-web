@@ -11,23 +11,28 @@
 </head>
 <body>
 
-    <!-- Background Glow Effects -->
     <div class="glow-bg glow-blue"></div>
     <div class="glow-bg glow-green"></div>
 
-    <!-- Header Navbar -->
     <header class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo nav-trigger" data-target="home">Global<span>MC</span></a>
-            <nav class="nav-links">
+
+            <button class="burger-btn" id="burger-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links" id="nav-links">
                 <button class="nav-btn active" data-target="home">Home</button>
                 <button class="nav-btn" data-target="rules">Rules</button>
                 <button class="nav-btn" data-target="dynmap">World Map</button>
                 <button class="nav-btn" data-target="join">How to Join</button>
                 <button class="nav-btn" data-target="store">Store</button>
-                <!-- ✨ ИСПРАВЛЕНО: убрано подчёркивание через CSS -->
                 <a href="https://discord.gg/eGsWQxwkas" target="_blank" class="nav-btn discord-link">Discord</a>
             </nav>
+
             <button class="ip-pill-btn copy-ip-trigger nav-trigger" data-target="home" data-ip="globalmc.hypixels.pl">
                 <span class="online-indicator" id="nav-online-dot"></span>
                 <span class="ip-text">globalmc.hypixels.pl</span>
@@ -36,10 +41,8 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="content-wrapper">
 
-        <!-- HOME PAGE -->
         <section id="home" class="page-section active">
             <div class="hero-section">
                 <div class="badge-wrapper">
@@ -62,12 +65,11 @@
                 </div>
             </div>
 
-            <!-- SERVER STATUS -->
             <div class="stats-bar">
                 <div class="stat-item">
                     <span class="stat-label">SERVER STATUS</span>
                     <span class="stat-value" id="server-status">
-                        <span class="status-indicator loading">⏳ Loading...</span>
+                        <span class="status-indicator loading">Loading...</span>
                     </span>
                 </div>
                 <div class="stat-item">
@@ -80,11 +82,10 @@
                 </div>
             </div>
 
-            <!-- ✨ ИСПРАВЛЕНО: Discord блок с правильным выравниванием -->
             <div class="discord-invite-box">
                 <div class="discord-invite-content">
                     <div class="discord-invite-text">
-                        <h3>💬 Join our Discord community</h3>
+                        <h3>Join our Discord community</h3>
                         <p>News, announcements and communication with GlobalMC players.</p>
                     </div>
                     <a href="https://discord.gg/eGsWQxwkas" target="_blank" class="discord-join-btn">
@@ -94,7 +95,6 @@
             </div>
         </section>
 
-        <!-- RULES PAGE -->
         <section id="rules" class="page-section">
             <div class="section-header">
                 <h2>Server Rules & Guidelines</h2>
@@ -103,7 +103,7 @@
 
             <div class="rules-toolbar">
                 <div class="rules-search-box">
-                    <input type="text" id="rules-search" placeholder="🔍 Search rules...">
+                    <input type="text" id="rules-search" placeholder="Search rules...">
                 </div>
                 <div class="rules-categories">
                     <button class="rule-cat-btn active" data-category="all">All Rules</button>
@@ -197,7 +197,6 @@
             </div>
         </section>
 
-        <!-- DYNMAP PAGE -->
         <section id="dynmap" class="page-section">
             <div class="section-header">
                 <h2>Live World DynMap</h2>
@@ -210,8 +209,8 @@
                     <span>DynMap Online & Connected</span>
                 </div>
                 <div class="map-actions">
-                    <button id="reload-map-btn" class="map-btn">🔄 Reload Map</button>
-                    <a href="http://globalmc.dynmap.me/" target="_blank" class="map-btn">↗️ Open in New Tab</a>
+                    <button id="reload-map-btn" class="map-btn">Reload Map</button>
+                    <a href="http://globalmc.dynmap.me/" target="_blank" class="map-btn">Open in New Tab</a>
                 </div>
             </div>
 
@@ -220,7 +219,6 @@
             </div>
         </section>
 
-        <!-- HOW TO JOIN PAGE -->
         <section id="join" class="page-section">
             <div class="section-header">
                 <h2>How to Connect to GlobalMC</h2>
@@ -259,63 +257,8 @@
                     <p>Join the server, build your own nation, pass parliamentary laws, forge alliances, and make history on GlobalMC!</p>
                 </div>
             </div>
-
-            <!-- Launcher Showcase -->
-            <div class="launcher-showcase">
-                <div class="launcher-badge">
-                    <span class="pulse-dot"></span>
-                    OPEN BETA v0.4
-                </div>
-                <h2 class="launcher-title">Play seamlessly with <span class="gradient-text">GlobalMC Launcher</span></h2>
-                <p class="launcher-desc">
-                    Our custom lightweight launcher allows you to start the game and connect directly to the GlobalMC server without manual setup or typing IP addresses.
-                </p>
-
-                <div class="launcher-features">
-                    <div class="feature-pill">
-                        <span class="pill-icon">⚡</span>
-                        <div class="pill-text">
-                            <strong>One-Click Connect</strong>
-                            <span>Instant join to the main server</span>
-                        </div>
-                    </div>
-                    <div class="feature-pill">
-                        <span class="pill-icon">☕</span>
-                        <div class="pill-text">
-                            <strong>Fabric 1.21.11</strong>
-                            <span>Pre-configured game client</span>
-                        </div>
-                    </div>
-                    <div class="feature-pill">
-                        <span class="pill-icon">🌐</span>
-                        <div class="pill-text">
-                            <strong>Pre-set Server IP</strong>
-                            <span>Server added automatically</span>
-                        </div>
-                    </div>
-                    <div class="feature-pill">
-                        <span class="pill-icon">💻</span>
-                        <div class="pill-text">
-                            <strong>Windows 10 / 11</strong>
-                            <span>Standalone 64-bit application</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="launcher-download-area">
-                    <a href="https://drive.google.com/file/d/12UIdGEj9SAUPy_6pbuh9V_ti3Jq7x936/view?usp=sharing" target="_blank" class="download-btn-premium">
-                        <span class="download-icon">📥</span>
-                        <div class="download-btn-text">
-                            <span class="btn-main-label">Download GlobalMC Launcher</span>
-                            <span class="btn-sub-label">Version 0.4 (Beta) • Google Drive</span>
-                        </div>
-                    </a>
-                    <span class="os-support-info">💻 Platform: Windows 10 / 11 (64-bit)</span>
-                </div>
-            </div>
         </section>
 
-        <!-- STORE PAGE -->
         <section id="store" class="page-section">
             <div class="section-header">
                 <h2>Server Store & Perks</h2>
@@ -330,7 +273,6 @@
             </div>
 
             <div class="store-grid">
-                <!-- Emperor Rank -->
                 <div class="store-card featured" data-store-cat="ranks">
                     <div class="store-badge">TOP RANK</div>
                     <div class="store-card-header">
@@ -338,7 +280,7 @@
                         <h3>Emperor Rank</h3>
                         <span class="item-price">$10.99</span>
                     </div>
-                    <p class="store-card-desc">📦 Includes exclusive "Emperor Crate" with high-tier loot</p>
+                    <p class="store-card-desc">Includes exclusive "Emperor Crate" with high-tier loot</p>
                     <ul class="item-perks">
                         <li>🛡️ <strong>Unique Emperor Custom Armor set</strong></li>
                         <li>⚡ <strong>Massive national mining & resource bonuses</strong></li>
@@ -347,14 +289,13 @@
                     <button class="buy-btn">Purchase Rank</button>
                 </div>
 
-                <!-- King Rank -->
                 <div class="store-card" data-store-cat="ranks">
                     <div class="store-card-header">
                         <span class="item-icon">⚜️</span>
                         <h3>King Rank</h3>
                         <span class="item-price">$5.99</span>
                     </div>
-                    <p class="store-card-desc">📦 1 Daily "King Crate" with premium loot</p>
+                    <p class="store-card-desc">1 Daily "King Crate" with premium loot</p>
                     <ul class="item-perks">
                         <li>🛡️ <strong>Special King Custom Armor set</strong></li>
                         <li>⛏️ <strong>Mining & action buffs for your entire nation</strong></li>
@@ -362,14 +303,13 @@
                     <button class="buy-btn">Purchase Rank</button>
                 </div>
 
-                <!-- Knight Rank -->
                 <div class="store-card" data-store-cat="ranks">
                     <div class="store-card-header">
                         <span class="item-icon">⚔️</span>
                         <h3>Knight Rank</h3>
                         <span class="item-price">$2.99</span>
                     </div>
-                    <p class="store-card-desc">📦 1 "Knight Crate" every 3 days</p>
+                    <p class="store-card-desc">1 "Knight Crate" every 3 days</p>
                     <ul class="item-perks">
                         <li>🛡️ <strong>Full Knight Armor (Diamond equivalent)</strong></li>
                         <li>🗡️ <strong>Exclusive weapon set included</strong></li>
@@ -377,7 +317,6 @@
                     <button class="buy-btn">Purchase Rank</button>
                 </div>
 
-                <!-- Mining Buffs -->
                 <div class="store-card" data-store-cat="boosters">
                     <div class="store-card-header">
                         <span class="item-icon">⛏️</span>
@@ -398,7 +337,6 @@
                     <button class="buy-btn">Buy Mining Buff</button>
                 </div>
 
-                <!-- Coins -->
                 <div class="store-card" data-store-cat="currency">
                     <div class="store-card-header">
                         <span class="item-icon">💰</span>
@@ -418,7 +356,6 @@
                     <button class="buy-btn">Buy Coins</button>
                 </div>
 
-                <!-- Chips -->
                 <div class="store-card" data-store-cat="currency">
                     <div class="store-card-header">
                         <span class="item-icon">🎰</span>
@@ -443,7 +380,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-brand">
@@ -456,7 +392,6 @@
         </div>
     </footer>
 
-    <!-- Toast Notification -->
     <div id="toast" class="toast">IP address copied to clipboard!</div>
 
     <script src="script.js"></script>
